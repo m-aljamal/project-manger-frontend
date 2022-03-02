@@ -1,0 +1,53 @@
+mutation updateDiscount(
+  $id: String!
+  $discount: UpdateCurrentMonthDiscountDto!
+) {
+  updateDiscount(id: $id, discount: $discount) {
+    absence
+    createdAt
+    date
+    id
+    late
+    notes
+    punishment
+    employee {
+      name
+      id
+      role
+      salary
+    }
+  }
+}
+
+mutation createDiscount(
+  $absence: Float
+  $date: DateTime!
+  $employeeId: String!
+  $late: Float
+  $notes: String
+  $punishment: Float
+) {
+  createDiscount(
+    discount: {
+      date: $date
+      employeeId: $employeeId
+      absence: $absence
+      late: $late
+      notes: $notes
+      punishment: $punishment
+    }
+  ) {
+    date
+    id
+    late
+    notes
+    absence
+    punishment
+  }
+}
+
+mutation deleteDiscount($employeeId: String!) {
+  deleteDiscount(id: $employeeId) {
+    late
+  }
+}

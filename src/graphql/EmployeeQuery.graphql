@@ -1,0 +1,105 @@
+query currentUser {
+  currentUser {
+    name
+    id
+    role
+    username
+  }
+}
+
+query findAllEmployees($projectId: String, $role: Role, $sortBy: Sort) {
+  findAllEmployees(projectId: $projectId, role: $role, sortBy: $sortBy) {
+    createdAt
+    id
+    name
+    role
+    salary
+    username
+  }
+}
+
+query findEmployeeById($id: String!) {
+  findEmployeeById(id: $id) {
+    createdAt
+    id
+    name
+    salary
+    username
+  }
+}
+
+query findEmployeesByProjectId($projectId: String!, $sortBy: Sort) {
+  findEmployeesByProjectId(projectId: $projectId, sortBy: $sortBy) {
+    name
+    id
+    password
+    createdAt
+    salary
+    username
+    avatar
+    jobTitle
+    divisions {
+      divisionNumber
+      divisionString
+    }
+    levels {
+      levelNumber
+      levelString
+    }
+  }
+}
+
+query findProjectEmployeesSalaries($projectId: String!) {
+  findProjectEmployeesSalaries(projectId: $projectId) {
+    absence
+    id
+    late
+    name
+    punishment
+    salary
+    totalSalart
+  }
+}
+
+query findEmployeeByRole($projectId: String!) {
+  findEmployeesByRole(projectId: $projectId) {
+    mangers {
+      avatar
+      createdAt
+      id
+      jobTitle
+      name
+      role
+      salary
+      username
+    }
+    services {
+      avatar
+      createdAt
+      id
+      jobTitle
+      name
+      role
+      salary
+      username
+    }
+    teachers {
+      avatar
+      createdAt
+      id
+      jobTitle
+      name
+      role
+      salary
+      username
+      divisions {
+        divisionNumber
+        divisionString
+      }
+      levels {
+        levelNumber
+        levelString
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+query findDiscounts($sortBy: Sort, $projectId: String, $approved: Boolean) {
+  findDiscounts(sortBy: $sortBy, projectId: $projectId, approved: $approved) {
+    absence
+    createdAt
+    date
+    id
+    late
+    notes
+    punishment
+    approved
+    employee {
+      name
+      id
+      role
+      salary
+    }
+  }
+}
+
+query findAllEmployeesDiscounts($projectId: String!, $sortBy: Sort) {
+  findEmployeesByProjectId(projectId: $projectId, sortBy: $sortBy) {
+    name
+    id
+    salary
+    currentMonthDiscounts {
+      absence
+      createdAt
+      date
+      id
+      late
+      notes
+      punishment
+      approved
+    }
+  }
+}

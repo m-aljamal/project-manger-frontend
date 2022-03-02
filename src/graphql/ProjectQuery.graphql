@@ -1,0 +1,20 @@
+query findAllProjects($sortBy: Sort) {
+  findAllProjects(sortBy: $sortBy) {
+    createdAt
+    id
+    nameAr
+    nameEn
+    type
+    updatedAt
+  }
+}
+query findProject($id: String!) {
+  findProject(id: $id) {
+    id
+    nameAr
+    nameEn
+    createdAt
+    type
+  }
+}
+

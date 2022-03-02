@@ -1,0 +1,44 @@
+mutation createEmployee(
+  $name: String!
+  $password: String!
+  $projectId: String
+  $salary: Float
+  $username: String!
+  $role: Role
+  $jobTitle: JobTitle
+  $divisions: [DivisionInput!]
+  $levels: [LevelInput!]
+  $avatar: String
+) {
+  createEmployee(
+    employee: {
+      name: $name
+      username: $username
+      password: $password
+      projectId: $projectId
+      salary: $salary
+      role: $role
+      jobTitle: $jobTitle
+      divisions: $divisions
+      levels: $levels
+      avatar: $avatar
+    }
+  ) {
+    createdAt
+    id
+    name
+    jobTitle
+    username
+    salary
+    role
+    divisions {
+      divisionNumber
+      divisionString
+    }
+    avatar
+    levels {
+      levelNumber
+      levelString
+    }
+  }
+}
