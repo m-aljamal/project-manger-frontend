@@ -1,3 +1,4 @@
+import { createStyles } from "@mantine/core";
 import { Link, useMatch, useParams } from "react-router-dom";
 import { useAuth } from "src/context/auth-context";
 import { adminLinks, useProjectLinks } from "src/utils/links";
@@ -9,6 +10,12 @@ interface ILink {
     icon: JSX.Element;
   };
 }
+
+const useStyles = createStyles((theme, _params, getRef) => {
+  return {
+    root: {},
+  };
+});
 
 function NavLink({ link }: ILink) {
   const match = useMatch(link.to);
@@ -36,7 +43,7 @@ function Nav() {
 
   return (
     <nav>
-      <ul className=" space-y-4">
+      <ul>
         {links?.map((link) => (
           <li key={link.label}>
             <NavLink link={link} />

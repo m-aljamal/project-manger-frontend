@@ -7,17 +7,18 @@ import { FaPowerOff } from "react-icons/fa";
 import { BiMessageDetail } from "react-icons/bi";
 import face from "src/face.jpg";
 import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
-import { useMantineTheme } from "@mantine/core";
+import { createStyles } from "@mantine/core";
 const AppLayout = () => {
-  const theme = useMantineTheme();
+  const { classes } = useStyles();
+
   return (
     <ErrorBoundary FallbackComponent={FullPageErrorFallback}>
-      <div className="flex justify-between" style={{ direction: theme.dir }}>
-        <div className="bg-slate-900 text-gray-200 h-screen p-2 w-80 pt-5 sticky top-0  text-center ">
+      <div className={classes.root}>
+        <div className={classes.slideBar}>
           <UserInfo />
           <Nav />
         </div>
-        <main className="w-full container">
+        <main className={classes.navBar}>
           <Header />
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Outlet />
@@ -42,22 +43,22 @@ export default AppLayout;
 
 const UserInfo = () => {
   const { user, logout }: any = useAuth();
-
+  const { classes } = useStyles();
   return (
     <div>
-      <div className="flex justify-around">
+      <div className={classes.userInfo}>
         <BiMessageDetail className="text-gray-300 text-xl" />
         <FaPowerOff
           className="text-gray-300 cursor-pointer text-lg"
           onClick={logout}
         />
       </div>
-      <div className="w-24 h-24 mx-auto mt-8 mb-3">
-        <img src={face} alt="falce" className="rounded-full " />
+      <div className={classes.imageContainer}>
+        <img src={face} alt="falce" className={classes.image} />
       </div>
-      <div className="mb-8">
-        <p className=" text-white text-lg">{user?.name}</p>
-        <p className="text-sm">{user?.username}</p>
+      <div className={classes.infoContainer}>
+        <p className={classes.infoName}>{user?.name}</p>
+        <p className={classes.userName}>{user?.username}</p>
       </div>
     </div>
   );
@@ -74,3 +75,50 @@ const Header = () => {
     </div>
   );
 };
+
+const useStyles = createStyles((theme, _params, getRef) => {
+  return {
+    root: {
+      display: "flex",
+      justifyContent: "space-between",
+      direction: theme.dir,
+    },
+    slideBar: {
+      backgroundColor: theme.colors.slate[0],
+      color: theme.colors.gray[0],
+      height: "100vh",
+      padding: "1.25rem",
+      width: "20rem",
+      position: "sticky",
+      top: 0,
+      textAlign: "center",
+    },
+    navBar: {
+      width: "100%",
+    },
+    userInfo: {
+      display: "flex",
+      justifyContent: "space-around",
+    },
+    imageContainer: {
+      width: "6rem",
+      margin: "auto",
+      marginTop: "2rem",
+    },
+    image: {
+      borderRadius: "50%",
+      width: "100%",
+    },
+    infoContainer: {
+      marginBottom: "3rem",
+    },
+    infoName: {
+      color: "white",
+      fontSize: "1.5rem",
+    },
+    userName: {
+      fontSize: "0.9rem",
+      padding: "0",
+    },
+  };
+});
