@@ -47,11 +47,8 @@ const UserInfo = () => {
   return (
     <div>
       <div className={classes.userInfo}>
-        <BiMessageDetail className="text-gray-300 text-xl" />
-        <FaPowerOff
-          className="text-gray-300 cursor-pointer text-lg"
-          onClick={logout}
-        />
+        <BiMessageDetail />
+        <FaPowerOff onClick={logout} />
       </div>
       <div className={classes.imageContainer}>
         <img src={face} alt="falce" className={classes.image} />
@@ -65,13 +62,30 @@ const UserInfo = () => {
 };
 
 const Header = () => {
+  const useStyles = createStyles((theme, _params, getRef) => {
+    return {
+      container: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0.8rem",
+        borderBottom: "1px solid #e6e6e6",
+        marginBottom: "2rem",
+        boxShadow: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      },
+      icon: {
+        fontSize: "1.5rem",
+        color: theme.colors.gray[1],
+      },
+    };
+  });
+  const { classes } = useStyles();
   return (
-    <div className="shadow-sm">
-      <div className="flex justify-between   my-4">
-        <AiOutlineMenu className="text-xl text-gray-700" />
-        <AiOutlineSearch className="text-2xl text-gray-700 " />
+    <div>
+      <div className={classes.container}>
+        <AiOutlineMenu className={classes.icon} />
+        <AiOutlineSearch className={classes.icon} />
       </div>
-      <hr className="-mx-4" />
     </div>
   );
 };
@@ -87,7 +101,7 @@ const useStyles = createStyles((theme, _params, getRef) => {
       backgroundColor: theme.colors.slate[0],
       color: theme.colors.gray[0],
       height: "100vh",
-      padding: "1.25rem",
+      padding: "1rem",
       width: "20rem",
       position: "sticky",
       top: 0,
@@ -115,10 +129,14 @@ const useStyles = createStyles((theme, _params, getRef) => {
     infoName: {
       color: "white",
       fontSize: "1.5rem",
+      margin: 0,
+      paddingTop: "2rem",
     },
     userName: {
       fontSize: "0.9rem",
       padding: "0",
+      margin: 0,
+      color: theme.colors.gray[2],
     },
   };
 });

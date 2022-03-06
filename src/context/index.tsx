@@ -31,7 +31,7 @@ const AppProviders: FC = ({ children }) => {
         <MantineProvider
           withNormalizeCSS
           theme={{
-            dir: "rtl",
+            dir: "ltr",
 
             colors: {
               slate: ["#0f172a"],
